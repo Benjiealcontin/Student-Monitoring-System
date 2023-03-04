@@ -978,9 +978,7 @@ Public Class Form1
         If dialog = DialogResult.No Then
             Me.Cancel = True
         Else
-            Me.Hide() 'hide the current form
-            Dim Form3 As New Form3() 'create an instance of the login form
-            Form3.Show() 'show the login form
+            Application.ExitThread()
         End If
 
     End Sub

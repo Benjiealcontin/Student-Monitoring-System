@@ -23,6 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ButtonLogout = New System.Windows.Forms.Button()
@@ -152,8 +153,6 @@ Partial Class Form1
         '
         'Panel1
         '
-        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.SystemColors.ButtonShadow
         Me.Panel1.Controls.Add(Me.ButtonLogout)
         Me.Panel1.Controls.Add(Me.ButtonSearch)
@@ -164,9 +163,10 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.ButtonConnection)
         Me.Panel1.Controls.Add(Me.ButtonDashboard)
         Me.Panel1.Controls.Add(Me.PictureBox1)
-        Me.Panel1.Location = New System.Drawing.Point(1, 0)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(239, 582)
+        Me.Panel1.Size = New System.Drawing.Size(239, 580)
         Me.Panel1.TabIndex = 0
         '
         'ButtonLogout
@@ -1215,8 +1215,11 @@ Partial Class Form1
         Me.Controls.Add(Me.PanelUserData)
         Me.Controls.Add(Me.PanelConnection)
         Me.Controls.Add(Me.PanelSearch)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "Student Monitoring System"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBoxSelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

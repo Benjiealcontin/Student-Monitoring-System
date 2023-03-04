@@ -23,11 +23,12 @@ Partial Class Form2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,25 +46,12 @@ Partial Class Form2
         Me.Panel1.Size = New System.Drawing.Size(734, 391)
         Me.Panel1.TabIndex = 0
         '
-        'PictureBox1
+        'ProgressBar1
         '
-        Me.PictureBox1.Image = Global.Student_Monitoring_System.My.Resources.Resources.NBSPI_logo
-        Me.PictureBox1.Location = New System.Drawing.Point(250, 12)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(219, 128)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(128, 163)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(465, 42)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Student Monitoring System"
+        Me.ProgressBar1.Location = New System.Drawing.Point(0, 366)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(734, 23)
+        Me.ProgressBar1.TabIndex = 3
         '
         'Label2
         '
@@ -75,12 +63,25 @@ Partial Class Form2
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "%"
         '
-        'ProgressBar1
+        'Label1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(0, 366)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(734, 23)
-        Me.ProgressBar1.TabIndex = 3
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(128, 163)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(465, 42)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Student Monitoring System"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Student_Monitoring_System.My.Resources.Resources.NBSPI_logo
+        Me.PictureBox1.Location = New System.Drawing.Point(250, 12)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(219, 128)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
         '
         'Timer1
         '
@@ -90,9 +91,10 @@ Partial Class Form2
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(734, 389)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Panel1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form2"
-        Me.Text = "Form2"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
