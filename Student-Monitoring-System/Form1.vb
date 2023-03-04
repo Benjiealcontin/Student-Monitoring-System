@@ -1,6 +1,4 @@
-﻿
-Imports System.Data.SqlClient
-Imports System.Timers
+﻿Imports System.Timers
 Imports MySqlConnector
 
 Public Class Form1
@@ -16,7 +14,6 @@ Public Class Form1
     Dim IDRam As String
     Dim StatusInput As String = "Save"
     Dim SqlCmdSearchstr As String
-    Dim SqlCmdSearchstr2 As String
 
     Public Shared StrSerialIn As String
     Dim GetID As Boolean = False
@@ -39,6 +36,7 @@ Public Class Form1
     End Sub
 
 
+    'Show data in DatagridView1 in Dashboard Panel'
     Private Function GetData() As DataTable
         Dim connectionString As String = "server=localhost; user=root; password=; database=project"
         Dim query As String = "SELECT `ID`, `RFID_UID`, `Student_ID`, `Name`, `Department`, `Course`, `Status`, `Year`, `Date`, `Time` FROM " & Table_Name2 & " ORDER BY ID DESC"
@@ -56,7 +54,9 @@ Public Class Form1
         Return dataTable
     End Function
 
-    Private Sub ShowData()
+
+    'Show data in DatagridView3 in Registration Panel'
+    Private Sub ShowDataInRegistration()
         Try
             Connection.Open()
         Catch ex As Exception
@@ -76,7 +76,6 @@ Public Class Form1
                 DataGridView3.Columns(2).DefaultCellStyle.Format = "c"
                 DataGridView3.DefaultCellStyle.ForeColor = Color.Black
                 DataGridView3.ClearSelection()
-                DataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnMode.Fill
                 DataGridView3.ColumnHeadersDefaultCellStyle.Font = New Font("Arial", 9, FontStyle.Bold)
             Else
                 DataGridView3.DataSource = DT
@@ -91,7 +90,8 @@ Public Class Form1
         Connection.Close()
     End Sub
 
-    Private Sub ShowData2()
+    'Show data in DatagridView2 in Search Panel'
+    Private Sub ShowDataInSearch()
         Try
             Connection.Open()
         Catch ex As Exception
@@ -126,6 +126,8 @@ Public Class Form1
         Connection.Close()
     End Sub
 
+    'Show data in UserDetails Panel'
+    'You can check the UserDetails via RFID Card and display the user information'
     Private Sub ShowDataUser()
         Try
             Connection.Open()
@@ -162,6 +164,7 @@ Public Class Form1
         DT = Nothing
         Connection.Close()
     End Sub
+
     Private Sub ButtonDashboard_Click(sender As Object, e As EventArgs) Handles ButtonDashboard.Click
         PictureBoxSelect.Top = ButtonDashboard.Top
         PanelDashboard.Visible = True
@@ -206,7 +209,7 @@ Public Class Form1
         PanelUserData.Visible = False
         PanelRegistration.Visible = True
         PanelSearch.Visible = False
-        ShowData()
+        ShowDataInRegistration()
     End Sub
 
     Private Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
@@ -216,7 +219,7 @@ Public Class Form1
         PanelUserData.Visible = False
         PanelRegistration.Visible = False
         PanelSearch.Visible = True
-        ShowData2()
+        ShowDataInSearch()
     End Sub
 
     Private Sub PanelDashboard_Resize(sender As Object, e As EventArgs) Handles PanelDashboard.Resize
@@ -251,6 +254,8 @@ Public Class Form1
         e.Graphics.DrawRectangle(New Pen(Color.LightGray, 2), PanelRegistration.ClientRectangle)
     End Sub
 
+    'Scan the available port'
+    'First Plug In the Arduino to the USB port'
     Private Sub ButtonScanPort_Click(sender As Object, e As EventArgs) Handles ButtonScanPort.Click
         ComboBoxPort.Items.Clear()
         Dim myPort As Array
@@ -270,6 +275,7 @@ Public Class Form1
         ComboBoxPort.DroppedDown = True
     End Sub
 
+    'To Connect the application to the arduino'
     Private Sub ButtonConnect_Click(sender As Object, e As EventArgs) Handles ButtonConnect.Click
         If ButtonConnect.Text = "Connect" Then
             SerialPort1.BaudRate = ComboBoxBaudRate.SelectedItem
@@ -304,6 +310,7 @@ Public Class Form1
         LabelParent_Number.Text = "Waiting..."
     End Sub
 
+    'Save the user information'
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
 
         If TextBoxStudent_ID.Text = "" Then
@@ -424,7 +431,7 @@ Public Class Form1
             Connection.Close()
             StatusInput = "Save"
         End If
-        ShowData()
+        ShowDataInRegistration()
     End Sub
 
     Private Sub ButtonClearForm_Click(sender As Object, e As EventArgs) Handles ButtonClearForm.Click
@@ -444,6 +451,7 @@ Public Class Form1
         TextBoxParent_Number.Text = ""
     End Sub
 
+    'To scan the RFID card'
     Private Sub ButtonScanID_Click(sender As Object, e As EventArgs) Handles ButtonScanID.Click
         If TimerSerialIn.Enabled = True Then
             PanelReadingTagProcess.Visible = True
@@ -489,19 +497,21 @@ Public Class Form1
             CheckBoxSearchName.Checked = True
         End If
     End Sub
+
+    'Search in Search Panel'
     Private Sub SearchTextBox_TextChanged(sender As Object, e As EventArgs) Handles SearchTextBox.TextChanged
         If CheckBoxSearchID.Checked = True Then
             If SearchTextBox.Text = Nothing Then
-                SqlCmdSearchstr2 = "SELECT `ID`, `RFID_UID`, `Student_ID`, `Name`, `Department`, `Course`, `Year`, `Status`, `Date`, `Time` FROM " & Table_Name2 & " ORDER BY Student_ID"
+                SqlCmdSearchstr = "SELECT `ID`, `RFID_UID`, `Student_ID`, `Name`, `Department`, `Course`, `Year`, `Status`, `Date`, `Time` FROM " & Table_Name2 & " ORDER BY Student_ID"
             Else
-                SqlCmdSearchstr2 = "SELECT `ID`, `RFID_UID`, `Student_ID`, `Name`, `Department`, `Course`, `Year`, `Status`, `Date`, `Time` FROM " & Table_Name2 & " WHERE Student_ID LIKE '" & SearchTextBox.Text & "%'"
+                SqlCmdSearchstr = "SELECT `ID`, `RFID_UID`, `Student_ID`, `Name`, `Department`, `Course`, `Year`, `Status`, `Date`, `Time` FROM " & Table_Name2 & " WHERE Student_ID LIKE '" & SearchTextBox.Text & "%'"
             End If
         End If
         If CheckBoxSearchName.Checked = True Then
             If SearchTextBox.Text = Nothing Then
-                SqlCmdSearchstr2 = "SELECT `ID`, `RFID_UID`, `Student_ID`, `Name`, `Department`, `Course`, `Year`, `Status`, `Date`, `Time` FROM " & Table_Name2 & " ORDER BY Name"
+                SqlCmdSearchstr = "SELECT `ID`, `RFID_UID`, `Student_ID`, `Name`, `Department`, `Course`, `Year`, `Status`, `Date`, `Time` FROM " & Table_Name2 & " ORDER BY Name"
             Else
-                SqlCmdSearchstr2 = "SELECT `ID`, `RFID_UID`, `Student_ID`, `Name`, `Department`, `Course`, `Year`, `Status`, `Date`, `Time` FROM " & Table_Name2 & " WHERE Name LIKE '" & SearchTextBox.Text & "%'"
+                SqlCmdSearchstr = "SELECT `ID`, `RFID_UID`, `Student_ID`, `Name`, `Department`, `Course`, `Year`, `Status`, `Date`, `Time` FROM " & Table_Name2 & " WHERE Name LIKE '" & SearchTextBox.Text & "%'"
             End If
         End If
 
@@ -513,7 +523,7 @@ Public Class Form1
         End Try
 
         Try
-            MySQLDA = New MySqlDataAdapter(SqlCmdSearchstr2, Connection)
+            MySQLDA = New MySqlDataAdapter(SqlCmdSearchstr, Connection)
             DT = New DataTable
             Data = MySQLDA.Fill(DT)
             If Data > 0 Then
@@ -531,6 +541,7 @@ Public Class Form1
         Connection.Close()
     End Sub
 
+    'Search in Registration Panel'
     Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
         If CheckBoxByID.Checked = True Then
             If TextBoxSearch.Text = Nothing Then
@@ -583,7 +594,7 @@ Public Class Form1
                         If e.RowIndex >= 0 Then
                             i = .CurrentRow.Index
                             IDRam = .Rows(i).Cells("ID").Value.ToString
-                            ShowData()
+                            ShowDataInRegistration()
                         End If
                     End With
                 End If
@@ -603,7 +614,7 @@ Public Class Form1
                         If e.RowIndex >= 0 Then
                             i = .CurrentRow.Index
                             IDRam = .Rows(i).Cells("ID").Value.ToString
-                            ShowData2()
+                            ShowDataInSearch()
                         End If
                     End With
                 End If
@@ -612,6 +623,7 @@ Public Class Form1
             Return
         End Try
     End Sub
+
     Private Sub DataGridView1_CellMouseDown(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView3.CellMouseDown
         Try
             If AllCellsSelected(DataGridView1) = False Then
@@ -631,6 +643,7 @@ Public Class Form1
             Return
         End Try
     End Sub
+
     Private Function AllCellsSelected(dgv As DataGridView) As Boolean
         AllCellsSelected = (DataGridView3.SelectedCells.Count = (DataGridView3.RowCount * DataGridView3.Columns.GetColumnCount(DataGridViewElementStates.Visible)))
     End Function
@@ -643,7 +656,7 @@ Public Class Form1
         LabelDateTime.Text = "Time " & DateTime.Now.ToString("HH:mm:ss") & "  Date " & DateTime.Now.ToString("dd MMM, yyyy")
     End Sub
 
-
+    'Delete the user data in Registration Panel'
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         If DataGridView3.RowCount = 0 Then
             MsgBox("Cannot delete, table data is empty", MsgBoxStyle.Critical, "Error Message")
@@ -685,10 +698,10 @@ Public Class Form1
             Connection.Close()
         End Try
         Connection.Close()
-        ShowData()
+        ShowDataInRegistration()
     End Sub
 
-    'Showdata2'
+    'Delete in Search Panel'
     Private Sub DeleteToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem1.Click
         If DataGridView2.RowCount = 0 Then
             MsgBox("Cannot delete, table data is empty", MsgBoxStyle.Critical, "Error Message")
@@ -712,7 +725,7 @@ Public Class Form1
         Try
             If AllCellsSelected2(DataGridView2) = True Then
                 MySQLCMD.CommandType = CommandType.Text
-                MySQLCMD.CommandText = "DELETE FROM " & Table_Name
+                MySQLCMD.CommandText = "DELETE FROM " & Table_Name2
                 MySQLCMD.Connection = Connection
                 MySQLCMD.ExecuteNonQuery()
             End If
@@ -730,7 +743,7 @@ Public Class Form1
             Connection.Close()
         End Try
         Connection.Close()
-        ShowData2()
+        ShowDataInSearch()
     End Sub
 
     Private Sub SelectALlToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectALlToolStripMenuItem.Click
@@ -752,14 +765,16 @@ Public Class Form1
     End Sub
 
     Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
-        ShowData()
+        ShowDataInRegistration()
 
     End Sub
 
     Private Sub RefreshToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem4.Click
-        ShowData2()
+        ShowDataInSearch()
     End Sub
 
+    'To Read the RFID card'
+    'Display the connected status'
     Private Sub TimerSerialIn_Tick(sender As Object, e As EventArgs) Handles TimerSerialIn.Tick
         Try
             StrSerialIn = SerialPort1.ReadExisting
@@ -794,6 +809,7 @@ Public Class Form1
         End If
     End Sub
 
+    'Check the RFID card if already exist in database'
     Private Sub IDCheck()
         Try
             Connection.Open()
@@ -842,6 +858,7 @@ Public Class Form1
         GetID = False
     End Sub
 
+    'To display the RFID_UID in UserDetails'
     Private Sub ViewData()
         LabelID.Text = StrSerialIn
         If LabelID.Text = "" Then
@@ -890,6 +907,7 @@ Public Class Form1
 
     End Sub
 
+    'Refresh DataGridView1 in every 1 second in Dashboard Panel'
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         ' Retrieve new data from your data source (e.g. a SQL Server database)
         Dim newData As DataTable = GetData()
@@ -914,9 +932,8 @@ Public Class Form1
         End If
     End Sub
 
+    'Search using DateTimePicker with Range'
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
-        Dim connectionString As String = "server=localhost; user=root; password=; database=project"
-
         Dim selectedDateTime As DateTime = DateTimePicker1.Value
         Dim selectedDateTime2 As DateTime = DateTimePicker2.Value
 
@@ -930,18 +947,15 @@ Public Class Form1
         ' Define the SQL query with a WHERE clause that filters by the timestamp field
         Dim query As String = "SELECT * FROM attendance WHERE Date BETWEEN @Date1 AND @Date2"
 
-        ' Create a MySQL connection object
-        Dim connection As New MySqlConnection(connectionString)
-
         ' Create a MySQL command object with the query and connection
-        Dim command As New MySqlCommand(query, connection)
+        Dim command As New MySqlCommand(query, Connection)
 
         ' Set the value of the timestamp parameter in the query
         command.Parameters.AddWithValue("@Date1", searchTimestamp)
         command.Parameters.AddWithValue("@Date2", searchTimestamp2)
 
         ' Open the MySQL connection
-        connection.Open()
+        Connection.Open()
 
         ' Execute the query and retrieve the results
         Dim adapter As New MySqlDataAdapter(command)
@@ -952,14 +966,15 @@ Public Class Form1
         DataGridView2.DataSource = results
 
         ' Close the MySQL connection
-        connection.Close()
+        Connection.Close()
 
     End Sub
 
+    'Exit'
     Private Sub ButtonLogout_Click(sender As Object, e As EventArgs) Handles ButtonLogout.Click
         Dim dialog As DialogResult
 
-        dialog = MessageBox.Show("Do you really want to close the app?", "Exit", MessageBoxButtons.YesNo)
+        dialog = MessageBox.Show("Do you really want to Exit the app?", "Exit", MessageBoxButtons.YesNo)
         If dialog = DialogResult.No Then
             Me.Cancel = True
         Else
@@ -970,5 +985,7 @@ Public Class Form1
 
     End Sub
 
+    Private Sub DataGridView3_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView3.CellContentClick
 
+    End Sub
 End Class

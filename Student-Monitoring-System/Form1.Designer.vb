@@ -122,12 +122,12 @@ Partial Class Form1
         Me.SearchTextBox = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.PictureBoxStatusConnect = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SelectAllToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearSelectToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.RefreshToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBoxStatusConnect = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBoxSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,8 +146,8 @@ Partial Class Form1
         CType(Me.FileSystemWatcher2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelSearch.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBoxStatusConnect, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip2.SuspendLayout()
+        CType(Me.PictureBoxStatusConnect, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -662,6 +662,7 @@ Partial Class Form1
         Me.DataGridView3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView3.ContextMenuStrip = Me.ContextMenuStrip1
         Me.DataGridView3.Location = New System.Drawing.Point(6, 380)
@@ -1155,6 +1156,40 @@ Partial Class Form1
         Me.DataGridView2.Size = New System.Drawing.Size(1046, 423)
         Me.DataGridView2.TabIndex = 0
         '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem1, Me.SelectAllToolStripMenuItem2, Me.ClearSelectToolStripMenuItem3, Me.RefreshToolStripMenuItem4})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(153, 92)
+        '
+        'DeleteToolStripMenuItem1
+        '
+        Me.DeleteToolStripMenuItem1.Image = Global.Student_Monitoring_System.My.Resources.Resources._2303123_bin_delete_garbage_remove_trash_icon
+        Me.DeleteToolStripMenuItem1.Name = "DeleteToolStripMenuItem1"
+        Me.DeleteToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem1.Text = "Delete"
+        '
+        'SelectAllToolStripMenuItem2
+        '
+        Me.SelectAllToolStripMenuItem2.Image = Global.Student_Monitoring_System.My.Resources.Resources._1055094_check_select_icon
+        Me.SelectAllToolStripMenuItem2.Name = "SelectAllToolStripMenuItem2"
+        Me.SelectAllToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+        Me.SelectAllToolStripMenuItem2.Text = "Select All"
+        '
+        'ClearSelectToolStripMenuItem3
+        '
+        Me.ClearSelectToolStripMenuItem3.Image = Global.Student_Monitoring_System.My.Resources.Resources._2303198_delete_email_junk_mail_spam_icon
+        Me.ClearSelectToolStripMenuItem3.Name = "ClearSelectToolStripMenuItem3"
+        Me.ClearSelectToolStripMenuItem3.Size = New System.Drawing.Size(152, 22)
+        Me.ClearSelectToolStripMenuItem3.Text = "Clear Selection"
+        '
+        'RefreshToolStripMenuItem4
+        '
+        Me.RefreshToolStripMenuItem4.Image = Global.Student_Monitoring_System.My.Resources.Resources._9027543_rotate_refresh_icon
+        Me.RefreshToolStripMenuItem4.Name = "RefreshToolStripMenuItem4"
+        Me.RefreshToolStripMenuItem4.Size = New System.Drawing.Size(152, 22)
+        Me.RefreshToolStripMenuItem4.Text = "Refresh"
+        '
         'PictureBoxStatusConnect
         '
         Me.PictureBoxStatusConnect.Image = Global.Student_Monitoring_System.My.Resources.Resources.Disconnect
@@ -1164,40 +1199,6 @@ Partial Class Form1
         Me.PictureBoxStatusConnect.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxStatusConnect.TabIndex = 2
         Me.PictureBoxStatusConnect.TabStop = False
-        '
-        'ContextMenuStrip2
-        '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem1, Me.SelectAllToolStripMenuItem2, Me.ClearSelectToolStripMenuItem3, Me.RefreshToolStripMenuItem4})
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(181, 114)
-        '
-        'DeleteToolStripMenuItem1
-        '
-        Me.DeleteToolStripMenuItem1.Image = Global.Student_Monitoring_System.My.Resources.Resources._2303123_bin_delete_garbage_remove_trash_icon
-        Me.DeleteToolStripMenuItem1.Name = "DeleteToolStripMenuItem1"
-        Me.DeleteToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
-        Me.DeleteToolStripMenuItem1.Text = "Delete"
-        '
-        'SelectAllToolStripMenuItem2
-        '
-        Me.SelectAllToolStripMenuItem2.Image = Global.Student_Monitoring_System.My.Resources.Resources._1055094_check_select_icon
-        Me.SelectAllToolStripMenuItem2.Name = "SelectAllToolStripMenuItem2"
-        Me.SelectAllToolStripMenuItem2.Size = New System.Drawing.Size(180, 22)
-        Me.SelectAllToolStripMenuItem2.Text = "Select All"
-        '
-        'ClearSelectToolStripMenuItem3
-        '
-        Me.ClearSelectToolStripMenuItem3.Image = Global.Student_Monitoring_System.My.Resources.Resources._2303198_delete_email_junk_mail_spam_icon
-        Me.ClearSelectToolStripMenuItem3.Name = "ClearSelectToolStripMenuItem3"
-        Me.ClearSelectToolStripMenuItem3.Size = New System.Drawing.Size(180, 22)
-        Me.ClearSelectToolStripMenuItem3.Text = "Clear Selection"
-        '
-        'RefreshToolStripMenuItem4
-        '
-        Me.RefreshToolStripMenuItem4.Image = Global.Student_Monitoring_System.My.Resources.Resources._9027543_rotate_refresh_icon
-        Me.RefreshToolStripMenuItem4.Name = "RefreshToolStripMenuItem4"
-        Me.RefreshToolStripMenuItem4.Size = New System.Drawing.Size(180, 22)
-        Me.RefreshToolStripMenuItem4.Text = "Refresh"
         '
         'Form1
         '
@@ -1209,11 +1210,11 @@ Partial Class Form1
         Me.Controls.Add(Me.PictureBoxStatusConnect)
         Me.Controls.Add(Me.LabelConnectionStatus)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.PanelSearch)
         Me.Controls.Add(Me.PanelDashboard)
         Me.Controls.Add(Me.PanelRegistration)
         Me.Controls.Add(Me.PanelUserData)
         Me.Controls.Add(Me.PanelConnection)
+        Me.Controls.Add(Me.PanelSearch)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.Panel1.ResumeLayout(False)
@@ -1241,8 +1242,8 @@ Partial Class Form1
         Me.PanelSearch.ResumeLayout(False)
         Me.PanelSearch.PerformLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBoxStatusConnect, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip2.ResumeLayout(False)
+        CType(Me.PictureBoxStatusConnect, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
