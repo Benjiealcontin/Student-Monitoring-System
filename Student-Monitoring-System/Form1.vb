@@ -984,8 +984,4 @@ Public Class Form1
         End If
 
     End Sub
-
-    Private Sub DataGridView3_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView3.CellContentClick
-
-    End Sub
 End Class
